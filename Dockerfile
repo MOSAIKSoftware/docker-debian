@@ -9,7 +9,7 @@ COPY tools/wait-for-tcp-socket.sh /bin/wait-for-tcp-socket
 COPY config/etc /etc
 COPY selections /selections
 
-RUN chmod a+x /sbin/begin-apt /sbin/set-selections /sbin/end-apt /bin/wait-for-socket && \
+RUN chmod a+x /sbin/begin-apt /sbin/set-selections /sbin/end-apt /bin/wait-for-tcp-socket && \
 	echo "Yes, do as I say!" | apt-get remove -y --force-yes --purge --auto-remove systemd udev && \
 	apt-get clean && \
 	begin-apt && \
