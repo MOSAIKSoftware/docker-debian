@@ -17,6 +17,7 @@ RUN chmod a+x /sbin/begin-apt /sbin/set-selections /sbin/end-apt /bin/wait-for-t
 	set-selections base && \
 	end-apt
 ##### START CUSTOM SCRIPT####
+COPY config /etc
 ONBUILD COPY selections /selections
 ONBUILD COPY config /etc
 
