@@ -1,0 +1,6 @@
+[template]
+src = "test.conf.tmpl"
+dest = "/tmp/test.conf"
+keys = [
+    "/test"
+]

@@ -19,6 +19,10 @@ then call `RUN set-selections yourPackages` inside your derived Dockerfile.
 
 place apt settings in `config/apt` and dpkg preferences in `config/dpkg` the will be included in the new image automaticaly. 
 
+## confd
+Including confd 
+
+
 ## Shrinking
 
 This image has been flatened running `docker run --name debian mosaiksoftware/debian:onbuild && docker export debian | docker import - mosaiksoftware/debian:latest` which reduces its size to 43 MB.
