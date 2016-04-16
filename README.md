@@ -20,7 +20,8 @@ then call `RUN set-selections yourPackages` inside your derived Dockerfile.
 place apt settings in `config/apt` and dpkg preferences in `config/dpkg` the will be included in the new image automaticaly. 
 
 ## confd
-Including confd 
+Including confd.
+See: https://github.com/kelseyhightower/confd/blob/master/docs/quick-start-guide.md
 
 
 ## Shrinking
