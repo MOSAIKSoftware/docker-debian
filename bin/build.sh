@@ -4,7 +4,7 @@ cd ..
 docker build -t mosaiksoftware/debian:onbuild .
 docker push mosaiksoftware/debian:onbuild
 
-docker run --name debian-export mosaiksoftware/debian:onbuild && docker export debian-export | docker import - mosaiksoftware/debian:latest
-docker stop debian-export 
-docker rm debian-export
+docker run --name debianexport mosaiksoftware/debian:onbuild /bin/true && docker export debianexport | docker import - mosaiksoftware/debian:latest
+docker stop debianexport 
+docker rm debianexport
 docker push mosaiksoftware/debian
