@@ -23,6 +23,18 @@ place apt settings in `config/apt` and dpkg preferences in `config/dpkg` the wil
 Including confd.
 See: https://github.com/kelseyhightower/confd/blob/master/docs/quick-start-guide.md
 
+## entrypoint commands
+
+this image contains some predefined commands:
+
+### init
+you can init this container using the entrypoint "init" it will run /docker/container_init.d scripts using run-parts.
+
+## Periodic tasks
+all tasks in /docker/periodic_hourly.d and /docker/periodic_daily.d will be run. 
+they should be executable and will be run unsing run-parts.
+
+http://manpages.ubuntu.com/manpages/trusty/de/man8/run-parts.8.html
 
 ## Shrinking
 
