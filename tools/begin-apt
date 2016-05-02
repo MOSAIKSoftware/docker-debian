@@ -1,5 +1,8 @@
 #!/bin/sh
-set -e
+#set -e
+
 #update package database
 apt-get update 
-apt-get upgrade -y 
+apt-get upgrade -y
+
+echo "" > /tmp/selections.all

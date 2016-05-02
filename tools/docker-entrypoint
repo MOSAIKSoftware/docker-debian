@@ -1,0 +1,14 @@
+#!/bin/bash
+confd -onetime -backend env
+
+if [ "$1" = "init" ]; then
+	echo "Running Init..."
+	run-parts /docker/container-init.d
+else
+	echo "Running Periodic..."
+	/bin/periodic-sh &
+	echo "Entering Container"
+
+	echo $@
+	exec "$@"
+fi

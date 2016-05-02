@@ -1,4 +1,10 @@
 #!/bin/sh
+
+release="${2:-stable}"
+echo running: 
+xargs -a "/tmp/selections.all" echo apt-get install --no-install-recommends -y -t $release 
+xargs -a "/tmp/selections.all" apt-get install --no-install-recommends -y -t $release 
+
 #cleanup
 rm -rf /var/lib/apt/lists
 #rm /tmp/*

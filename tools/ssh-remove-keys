@@ -1,0 +1,19 @@
+#!/bin/sh 
+
+
+if [[ !-e /etc/ssh/keys/GENERATED ]]; then
+	rm /etc/ssh/ssh_host_*
+	mkdir /etc/ssh/keys/
+
+	#HostKey /etc/ssh/keys/rsa_key
+	#HostKey /etc/ssh/keys/dsa_key
+	#HostKey /etc/ssh/keys/ecdsa_key
+	#HostKey /etc/ssh/keys/ed25519_key
+
+	ssh-keygen -t dsa -f /etc/ssh/keys/dsa_key
+	ssh-keygen -t rsa -f /etc/ssh/keys/rsa_key
+	ssh-keygen -t ecdsa -f /etc/ssh/keys/ecsda_key
+	ssh-keygen -t ed25519 -f /etc/ssh/keys/rsa_key
+
+	touch /etc/ssh/keys/GENERATED
+fi
