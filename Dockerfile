@@ -1,7 +1,6 @@
 FROM debian:jessie
 MAINTAINER  Chrisitan Holzberger <ch@mosaiksoftware.de>
 ENV PATH /usr/local/go/bin:$PATH
-ENV DEBIAN_FRONTEND noninteractive
 ##### PACKAGE INSTALLATION #####
 COPY tools /bin/
 COPY config-base /etc
@@ -17,9 +16,8 @@ mkdir /docker/container_init.d && \
 mkdir /docker/periodic_hourly.d && \
 mkdir /docker/periodic_daily.d 
 
-
-
-RUN chmod a+x /bin/begin-apt /bin/set-selections /bin/end-apt /bin/wait-for-tcp-socket  \
+RUN export DEBIAN_FRONTEND=noninteractive \
+&& chmod a+x /bin/begin-apt /bin/set-selections /bin/end-apt /bin/wait-for-tcp-socket  \
 &&	echo "Yes, do as I say!" | apt-get remove -y --force-yes --purge --auto-remove systemd udev \
 &&	apt-get clean \ 
 &&	begin-apt \
@@ -39,7 +37,8 @@ RUN wget https://storage.googleapis.com/golang/go1.6.linux-amd64.tar.gz -O /go.t
 && rm -rf /usr/local/go 
 #-a -installsuffix cgo -ldflags '-extld ld -extldflags -static' -a -x
 
-RUN echo "Europe/Stockholm" > /etc/timezone && \
+RUN export DEBIAN_FRONTEND=noninteractive && \
+ echo "Europe/Stockholm" > /etc/timezone && \
 	dpkg-reconfigure -f noninteractive tzdata && \
 	export LANGUAGE=en_US.UTF-8 && \
 	export LANG=en_US.UTF-8 && \

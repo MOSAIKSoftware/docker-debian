@@ -36,6 +36,16 @@ they should be executable and will be run unsing run-parts.
 
 http://manpages.ubuntu.com/manpages/trusty/de/man8/run-parts.8.html
 
+### Example
+
+Integration daily script: 
+```
+echo "run/whatever" >> /srv/runme.sh 
+chmod a+x /srv/runme.sh
+
+docker run -v /srv/runme.sh /docker/periodic_daily.d/runme.sh
+```
+
 ## Shrinking
 
 This image has been flatened running `docker run --name debian mosaiksoftware/debian:onbuild && docker export debian | docker import - mosaiksoftware/debian:latest` which reduces its size to 43 MB.
