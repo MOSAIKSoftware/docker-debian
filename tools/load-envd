@@ -1,0 +1,5 @@
+#!/bin/bash
+
+set -a 
+source /etc/env.d/*.env
+set +a

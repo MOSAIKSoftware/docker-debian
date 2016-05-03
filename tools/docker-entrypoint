@@ -1,5 +1,8 @@
 #!/bin/bash
+. /bin/load-envd
+
 confd -onetime -backend env
+
 
 if [ "$1" = "init" ]; then
 	echo "Running Init..."

@@ -1,5 +1,9 @@
-#!/bin/sh
+#!/bin/bash
 #set -e
+
+. /bin/load-envd 
+
+export DEBIAN_FRONTEND=noninteractive
 
 #update package database
 apt-get update 
