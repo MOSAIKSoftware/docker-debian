@@ -12,17 +12,12 @@ while true; do
 	H=0
 	while [ $H -lt 23 ]; do
 		M=0
-		while [ $M -lt 59 ]; do
-			sleep 60
-			#echo "$D:$H:$M"
-			let M=$M+1;
-		done
-		#echo "$D:$H:$M"
+		sleep 3600
 	
-		run-parts /docker/periodic_hourly.d
+		run-parts --regex '^.*\.sh$' /docker/periodic_hourly.d
 		let H=$H+1
 	done
-	run-parts /docker/periodic_daily.d
+	run-parts --regex '^.*\.sh$' /docker/periodic_daily.d
 	let D=$D+1
 done
 		

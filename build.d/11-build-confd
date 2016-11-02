@@ -1,0 +1,13 @@
+#!/bin/bash
+
+echo "Downloading confd..."
+wget -q https://github.com/kelseyhightower/confd/archive/master.tar.gz -O - | tar -C /usr/src -xzf -
+cd /usr/src/confd-master
+echo "Running go get"
+go get
+echo "Running go build"
+go build
+
+echo "Installing confd"
+cp /usr/src/confd-master/confd-master /bin/confd
+rm -rf /usr/src/confd

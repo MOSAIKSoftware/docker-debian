@@ -1,0 +1,4 @@
+#!/bin/bash
+set-selections base 
+apply-apt
+

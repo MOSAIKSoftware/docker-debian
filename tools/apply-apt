@@ -1,15 +1,9 @@
 #!/bin/sh
 
 release="${2:-stable}"
-
 if [ -e /tmp/selections.all ];then
 	echo running: 
 	xargs -a "/tmp/selections.all" echo apt-get install --no-install-recommends -y -t $release 
 	xargs -a "/tmp/selections.all" apt-get install --no-install-recommends -y -t $release 
-fi 
-
-#cleanup
-rm -rf /var/lib/apt/lists
-#rm /tmp/*
-apt-get autoremove -y
-apt-get clean
+fi
+rm /tmp/selections.all

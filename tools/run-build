@@ -1,0 +1,16 @@
+#!/bin/bash 
+
+BASEDIR="$1"
+
+echo "=====> Running build in $BASEDIR"
+
+chmod a+x $BASEDIR/*
+run-parts --report $BASEDIR
+
+echo "=====> DONE BUILDING"
+echo "=====> CLEANING UP"
+
+rm -rf $BASEDIR
+
+echo "=====> DONE CLEANING UP"
+

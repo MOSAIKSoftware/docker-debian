@@ -3,15 +3,14 @@
 
 confd -onetime -backend env
 
-
 if [ "$1" = "init" ]; then
 	echo "Running Init..."
 	run-parts /docker/container-init.d
-else
-	echo "Running Periodic..."
-	/bin/periodic-sh &
-	echo "Entering Container"
 
-	echo $@
-	exec "$@"
+elif [ "$1" = "shell" ]; then
+	echo "Running shell"
+	bash
+else
+	echo "Starting dinit Periodic..."
+	exec /bin/dinit -r /bin/periodic-sh -r "$@"
 fi

@@ -1,0 +1,6 @@
+#!/bin/bash
+
+mkdir /docker/ 
+mkdir /docker/container_init.d 
+mkdir /docker/periodic_hourly.d 
+mkdir /docker/periodic_daily.d

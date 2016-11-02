@@ -1,0 +1,4 @@
+#!/bin/bash
+
+echo "Downloading go..."
+wget -q https://storage.googleapis.com/golang/go1.6.linux-amd64.tar.gz -O - | tar -C /usr/local -xzf - 

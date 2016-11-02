@@ -5,6 +5,8 @@ Removes systemd and udev and adds them to the ignore list.
 
 Does not install documentation of packages. 
 
+This Documentation is unfinished and needs some cleanup
+
 ## Selections
 
 This images provides an easy way to add packages to a derived image 
@@ -23,9 +25,17 @@ place apt settings in `config/apt` and dpkg preferences in `config/dpkg` the wil
 Including confd.
 See: https://github.com/kelseyhightower/confd/blob/master/docs/quick-start-guide.md
 
+## periodic
+Including a cron like wrapper
+
 ## entrypoint commands
 
 this image contains some predefined commands:
+
+shell -> Starts a bash inside the container
+init -> runs scripts in /container-init 
+
+By default it will start the command defined in CMD inside your Dockerfile using dinit. 
 
 ### init
 you can init this container using the entrypoint "init" it will run /docker/container_init.d scripts using run-parts.
@@ -46,12 +56,14 @@ chmod a+x /srv/runme.sh
 docker run -v /srv/runme.sh /docker/periodic_daily.d/runme.sh
 ```
 
-## Shrinking
+## Build Scripts
 
-This image has been flatened running `docker run --name debian mosaiksoftware/debian:onbuild && docker export debian | docker import - mosaiksoftware/debian:latest` which reduces its size to 43 MB.
+on every build process the directorys /config, /build.d and /sections are copied from the context. 
+you need to have at least one file in each of these directories
 
-However we lose ONBUILD capabilities doing so. 
+### Adding more layers of build scripts
 
-Add this to your dockerfile if you dont use `:onbuild` : 
-`COPY selections /selections/
-COPY config/etc /etc`
+```
+COPY /something /build-xx
+RUN run-build /build-xx
+```

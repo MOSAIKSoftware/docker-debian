@@ -1,0 +1,13 @@
+#!/bin/bash
+ 
+export PATH=$PATH:/usr/local/go/bin
+echo "Downloading dinit..."
+wget -q https://github.com/miekg/dinit/archive/master.tar.gz -O - | tar -C /usr/src -xzf - 
+cd /usr/src/dinit-master
+echo "Running go build..."
+CGO_ENABLED=0 go build -a -tags netgo -installsuffix netgo
+
+echo "Installing dinit"
+cp /usr/src/dinit-master/dinit-master /bin/dinit
+
+rm -rf /usr/src/dinit
