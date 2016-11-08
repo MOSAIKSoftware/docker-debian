@@ -67,3 +67,6 @@ you need to have at least one file in each of these directories
 COPY /something /build-xx
 RUN run-build /build-xx
 ```
+
+# See
+https://wiki.debian.org/ReduceDebian

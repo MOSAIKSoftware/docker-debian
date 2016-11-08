@@ -5,6 +5,6 @@ chmod a+x /bin/begin-apt /bin/set-selections /bin/end-apt /bin/wait-for-tcp-sock
 chmod a+x /sbin/runlevel 
 chmod a+x /bin/* 
 apt-get install -y runit
-echo "Yes, do as I say!" | apt-get remove -y --force-yes --purge --auto-remove systemd udev 
+#echo "Yes, do as I say!" | apt-get remove -y --force-yes --purge --auto-remove systemd udev dmsetup inetutils-ping libcryptsetup4 libdevmapper1.02.1  systemd systemd-sysv
 apt-get clean 
 

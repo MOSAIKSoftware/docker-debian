@@ -1,0 +1,7 @@
+#!/bin/bash
+export DEBIAN_FRONTEND=noninteractive
+apt-get install -y aptitude
+apt-get purge -y $(aptitude search '~i!~M!~prequired!~pimportant!~R~prequired!~R~R~prequired!~R~pimportant!~R~R~pimportant!busybox!grub!initramfs-tools' | awk '{print $2}')
+apt-get purge -y aptitude
+apt-get autoremove -y 
+apt-get clean 

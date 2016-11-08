@@ -1,0 +1,3 @@
+#!/bin/bash
+
+echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections

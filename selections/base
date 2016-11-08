@@ -2,4 +2,3 @@ git
 ca-certificates
 wget
 locales
-apt-utils

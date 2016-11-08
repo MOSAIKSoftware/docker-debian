@@ -1,21 +1,21 @@
 FROM debian:jessie
 MAINTAINER  Chrisitan Holzberger <ch@mosaiksoftware.de>
-ENV PATH /usr/local/go/bin:$PATH
+ENV PATH /commands:/usr/local/go/bin:$PATH
 ##### PACKAGE INSTALLATION #####
 COPY tools /bin/
 
 COPY selections /selections
 COPY tools/runlevel /sbin/runlevel
+COPY commands /commands
 ENV GOPATH /usr/src/confd
 ENV GOBIN /usr/src/confd/bin
 ENV TEST "mosaiksoftware/debian"
 # Custom Builds
-
 COPY config /etc
 
 # make use of docker caching
-
 RUN chmod a+x /bin/run-build 
+RUN chmod a+x /commands
 
 COPY build.d/ /build/
 RUN run-build /build/
@@ -24,6 +24,7 @@ RUN run-build /build/
 ONBUILD COPY selections /selections
 ONBUILD COPY config /etc
 ONBUILD COPY build.d /build
+ONBUILD COPY commands /commands
 ONBUILD RUN run-build /build
 ENTRYPOINT [ "/bin/docker-entrypoint" ]
-CMD  dpkg --get-selections
+CMD ['dpkg', '--get-selections']

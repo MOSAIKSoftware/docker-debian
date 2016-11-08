@@ -1,0 +1,4 @@
+#!/bin/bash
+
+echo "Bootstraping Container"
+run-parts /docker/container-init.d

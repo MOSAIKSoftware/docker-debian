@@ -3,14 +3,14 @@
 
 confd -onetime -backend env
 
-if [ "$1" = "init" ]; then
-	echo "Running Init..."
-	run-parts /docker/container-init.d
-
+if [ "$1" = "bootstrap" ]; then
+	/commands/container-bootstrap
+elif [ "$1" = "status" ]; then
+	/commands/container-status
 elif [ "$1" = "shell" ]; then
 	echo "Running shell"
 	bash
 else
 	echo "Starting dinit Periodic..."
-	exec /bin/dinit -r /bin/periodic-sh -r "$@"
+	exec /bin/dinit -stop /bin/runit-stop -r /bin/runit-start  
 fi
