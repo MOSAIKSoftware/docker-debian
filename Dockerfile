@@ -7,6 +7,7 @@ COPY tools /bin/
 COPY selections /selections
 COPY tools/runlevel /sbin/runlevel
 COPY commands /commands
+COPY service /etc/service
 ENV GOPATH /usr/src/confd
 ENV GOBIN /usr/src/confd/bin
 ENV TEST "mosaiksoftware/debian"
