@@ -25,7 +25,8 @@ RUN run-build /build/
 ONBUILD COPY selections /selections
 ONBUILD COPY config /etc
 ONBUILD COPY build.d /build
-ONBUILD COPY commands /commands
 ONBUILD RUN run-build /build
+ONBUILD COPY commands /commands
+ONBUILD COPY service /etc/service
 ENTRYPOINT [ "/bin/docker-entrypoint" ]
 CMD ['dpkg', '--get-selections']
