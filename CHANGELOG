@@ -1,0 +1,4 @@
+## 12.11.2016
+
+removed periodic shell script and replaced it by cron
+files from /docker/periodic should be moved to /etc/cron.*

@@ -1,0 +1,7 @@
+#!/bin/sh
+set -e
+sel="$1"
+
+echo "Collecting Selections for removal: $sel"
+cat  "/selections/$sel" >> /tmp/selections.remove
+

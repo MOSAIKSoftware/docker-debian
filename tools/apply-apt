@@ -1,9 +1,21 @@
 #!/bin/sh
 
-release="${2:-stable}"
+release="${1:-stable}"
 if [ -e /tmp/selections.all ];then
 	echo running: 
 	xargs -a "/tmp/selections.all" echo apt-get install --no-install-recommends -y -t $release 
-	DEBIAN_FRONTEND=noninteractive xargs -a "/tmp/selections.all" apt-get install --no-install-recommends -y -t $release 
+	debian_frontend=noninteractive xargs -a "/tmp/selections.all" apt-get install --no-install-recommends -y -t $release 
+  rm /tmp/selections.all
 fi
-rm /tmp/selections.all
+
+
+if [ -e /tmp/selections.remove ];then
+	echo running: 
+	xargs -a "/tmp/selections.remove" echo apt-get remove -y  
+	debian_frontend=noninteractive xargs -a "/tmp/selections.remove" apt-get remove -y 
+  
+	apt-get autoremove
+	apt-get purge
+
+  rm /tmp/selections.remove
+fi

@@ -24,9 +24,11 @@ RUN run-build /build/
 ##### START CUSTOM SCRIPT####
 ONBUILD COPY selections /selections
 ONBUILD COPY config /etc
+ONBUILD COPY service /etc/service
 ONBUILD COPY build.d /build
 ONBUILD RUN run-build /build
 ONBUILD COPY commands /commands
+ONBUILD RUN chmod a+x /commands/*
 ONBUILD COPY service /etc/service
 ENTRYPOINT [ "/bin/docker-entrypoint" ]
 CMD ['dpkg', '--get-selections']

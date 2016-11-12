@@ -1,4 +1,6 @@
 git
 ca-certificates
 wget
+curl
 locales
+cron
