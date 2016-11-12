@@ -14,8 +14,8 @@ if [ -e /tmp/selections.remove ];then
 	xargs -a "/tmp/selections.remove" echo apt-get remove -y  
 	debian_frontend=noninteractive xargs -a "/tmp/selections.remove" apt-get remove -y 
   
-	apt-get autoremove
-	apt-get purge
+	apt-get autoremove -y
+	apt-get purge -y
 
   rm /tmp/selections.remove
 fi

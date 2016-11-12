@@ -7,7 +7,7 @@ COPY tools /bin/
 COPY selections /selections
 COPY tools/runlevel /sbin/runlevel
 COPY commands /commands
-COPY service /etc/service
+COPY service /service
 ENV GOPATH /usr/src/confd
 ENV GOBIN /usr/src/confd/bin
 ENV TEST "mosaiksoftware/debian"
@@ -24,11 +24,10 @@ RUN run-build /build/
 ##### START CUSTOM SCRIPT####
 ONBUILD COPY selections /selections
 ONBUILD COPY config /etc
-ONBUILD COPY service /etc/service
 ONBUILD COPY build.d /build
 ONBUILD RUN run-build /build
 ONBUILD COPY commands /commands
 ONBUILD RUN chmod a+x /commands/*
-ONBUILD COPY service /etc/service
+ONBUILD COPY service /service
 ENTRYPOINT [ "/bin/docker-entrypoint" ]
 CMD ['dpkg', '--get-selections']

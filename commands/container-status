@@ -1,2 +1,2 @@
 #!/bin/bash
-sv status /etc/service/*
+sv status /service/*
