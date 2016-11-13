@@ -1,6 +1,5 @@
 #!/bin/bash
+rm /etc/cron.daily/* 2>/dev/null || true
+rm /etc/cron.weekly/* 2>/dev/null || true
 
-mkdir /docker/ 
-mkdir /docker/container_init.d 
-mkdir /docker/periodic_hourly.d 
-mkdir /docker/periodic_daily.d
+crontab /etc/crontab
