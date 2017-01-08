@@ -1,0 +1,9 @@
+#!/bin/bash
+
+export DEBIAN_FRONTEND=noninteractive 
+chmod a+x /bin/begin-apt /bin/set-selections /bin/end-apt /bin/wait-for-tcp-socket  
+chmod a+x /sbin/runlevel 
+chmod a+x /bin/* 
+
+wget https://github.com/just-containers/s6-overlay/releases/download/v1.18.1.5/s6-overlay-amd64.tar.gz -O /tmp/s6.tar.gz
+tar xzf /tmp/s6.tar.gz -C /

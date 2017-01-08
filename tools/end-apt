@@ -13,3 +13,6 @@ rm -rf /var/lib/apt/lists
 #rm /tmp/*
 apt-get autoremove -y
 apt-get clean
+
+rm /etc/apt/apt.conf.d/10-proxy
+rm /etc/env.d/10-proxy

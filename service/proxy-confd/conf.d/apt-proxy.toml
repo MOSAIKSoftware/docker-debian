@@ -1,0 +1,10 @@
+[template]
+prefix="/apt/proxy"
+src="apt-proxy.conf"
+dest="/etc/apt/apt.conf.d/10-proxy"
+mode="0700"
+keys = [ 
+	"/apt/proxy/http",
+	"/apt/proxy/https"
+]
+

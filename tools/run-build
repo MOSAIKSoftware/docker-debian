@@ -11,6 +11,6 @@ echo "=====> DONE BUILDING"
 echo "=====> CLEANING UP"
 
 rm -rf $BASEDIR
-
+rm /etc/env.d/001-build.env
 echo "=====> DONE CLEANING UP"
 

@@ -1,7 +1,19 @@
 #!/bin/bash
-#set -e
 
-. /bin/envd-load 
+echo "Env:"
+
+$( /bin/envd-load )
+
+### build time proxy config
+
+
+echo "Warning confd not found... setting proxys from inline script"
+echo "Acquire::http::proxy \"$APT_PROXY_HTTP\";" > /etc/apt/apt.conf.d/10-proxy;
+echo "Acquire::https::proxy \"$APT_PROXY_HTTPS\";" >> /etc/apt/apt.conf.d/10-proxy;
+echo "Acquire::ftp::proxy \"$APT_PROXY_FTP\";" >> /etc/apt/apt.conf.d/10-proxy
+
+echo "HTTP_PROXY=$SYS_HTTP_PROXY" > /etc/env.d/10-proxy
+echo "http_proxy=$SYS_HTTP_PROXY" > /etc/env.d/10-proxy
 
 export DEBIAN_FRONTEND=noninteractive
 

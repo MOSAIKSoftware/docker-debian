@@ -1,0 +1,19 @@
+#!/bin/bash
+. /bin/envd-load
+
+SCRIPT=`realpath $0`
+SCRIPTPATH=`dirname $SCRIPT`
+
+which confd >/dev/null 2>/dev/null
+if [ "$?" = "1" ];then 
+	echo "Warning confd not found... setting proxys from inline script"
+	echo "Acquire::http::proxy \"$APT_PROXY_HTTP\";" > /etc/apt/apt.conf.d/10-proxy;
+	echo "Acquire::https::proxy \"$APT_PROXY_HTTPS\";" >> /etc/apt/apt.conf.d/10-proxy;
+	echo "Acquire::ftp::proxy \"$APT_PROXY_FTP\";" >> /etc/apt/apt.conf.d/10-proxy
+
+	echo "HTTP_PROXY=$SYS_HTTP_PROXY" > /etc/env.d/10-proxy
+	echo "http_proxy=$SYS_HTTP_PROXY" > /etc/env.d/10-proxy
+else
+	echo "Running confd with Service Directory: $SCRIPTPATH"
+	confd -config-file /etc/confd/confd.toml -confdir "$SCRIPTPATH"
+fi

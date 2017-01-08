@@ -1,8 +1,6 @@
 #!/bin/bash
-
-env > /etc/env.d/docker.env
-. /bin/envd-load
-
+envd-dump
+envd-dump > /etc/env.d/000-docker.env
 
 confd -onetime 
 
@@ -14,6 +12,6 @@ elif [ "$1" = "shell" ]; then
 	echo "Running shell"
 	bash
 else
-	echo "Starting dinit Periodic..."
-	exec /bin/dinit -stop /bin/runit-stop -r /bin/runit-start  
+	echo "Starting s6..."
+	/init ${@}
 fi

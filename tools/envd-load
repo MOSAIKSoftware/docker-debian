@@ -1,5 +1,6 @@
 #!/bin/bash
-
-set -a 
-source /etc/env.d/*.env
-set +a
+echo set -o allexport
+ls /etc/env.d/*.env 2>/dev/null | sort | while read i; do
+	echo source $i 
+done
+echo set +o allexport

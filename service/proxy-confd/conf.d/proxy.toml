@@ -1,0 +1,11 @@
+[template]
+prefix="/sys/proxy"
+src="sys-proxy.conf"
+dest="/etc/env.d/10-proxy"
+mode="0755"
+keys = [ 
+	"/sys/proxy/http",
+	"/sys/proxy/https",
+	"/sys/proxy/ftp"
+]
+
